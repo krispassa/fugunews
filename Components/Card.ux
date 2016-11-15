@@ -1,0 +1,4 @@
+<Rectangle CornerRadius="2" ux:Class="Material.Card" Color="{Resource Material.CardColor}">
+	<Shadow Color="#0002" Distance="0" />
+	<Shadow Color="#0002" Distance="2" />
+</Rectangle>

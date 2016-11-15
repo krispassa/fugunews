@@ -1,0 +1,82 @@
+<App>
+	<iOS.StatusBarConfig Style="Light" IsVisible="true" />
+	<Android.StatusBarConfig IsVisible="true" />
+	<Material.LightTheme />
+	<Router ux:Name="router" />
+
+	<JavaScript File="MainView.js"/>
+
+	<Material.DrawerPanel>
+		<Material.Drawer ux:Binding="Drawer" Edge="Left">
+			<StackPanel Margin="20" ItemSpacing="20">
+				<Text FontSize="24">About</Text>
+				<Text TextWrapping="Wrap">This is a sample application which provide opportunity to learn something new.</Text>
+			</StackPanel>
+		</Material.Drawer>
+		<DockPanel>
+			<Material.AppBar Dock="Top">
+				<Material.AppBarIcon Icon="Menu" Clicked="{openDrawerPanel}" Alignment="Left"/>
+				<Text Value="fugunews" FontSize="24" Alignment="Center"/>
+			</Material.AppBar>
+
+			<Navigator DefaultTemplate="home">
+				<Page ux:Template="home">
+					<ScrollView SnapMinTransform="false">
+						<DockPanel>
+							<CogWheelReload Dock="Top" />
+							<StackPanel Margin="0, 20" ItemSpacing="20">
+								<Each Items="{news}">
+									<Material.Card Height="250" Width="90%" Clicked="{showDetails}">
+										<Rectangle Height="100%" Width="100%" Alignment="TopCenter" CornerRadius="2">
+											<Rectangle>
+												<StackPanel Padding="20" Alignment="Bottom">
+													<Text Value="{webTitle}" FontSize="24" Color="Material.White" TextWrapping="Wrap"/>
+												</StackPanel>
+												<LinearGradient StartPoint="0, 0" EndPoint="0, 1">
+													<GradientStop Offset="1" Color="#0009"/>
+													<GradientStop Offset="0.6" Color="#0009"/>
+													<GradientStop Offset="0" Color="#0002"/>
+												</LinearGradient>
+											</Rectangle>
+											<ImageFill Url="{image}" StretchMode="UniformToFill" ContentAlignment="BottomCenter"/>
+										</Rectangle>
+									</Material.Card>
+								</Each>
+							</StackPanel>
+							<Scrolled To="End" Within="300">
+								<Callback Handler="{loadMore}" />
+							</Scrolled>
+						</DockPanel>
+					</ScrollView>
+				</Page>
+
+				<Page ux:Template="details">
+					<ScrollView SnapMinTransform="false">
+						<With Data="{currentNew}">
+							<StackPanel>
+								<Rectangle Height="250" Width="100%" Alignment="TopCenter">
+									<Material.RippleResponseCircle RippleColor="#fff2" RippleFromPointer="false" Alignment="TopLeft" Clicked="{goHome}">
+										<Material.MaterialIcon Icon="ArrowLeft" Color="{Resource Material.White}" Alignment="VerticalCenter" Margin="16" />
+									</Material.RippleResponseCircle>
+									<Rectangle>
+										<LinearGradient StartPoint="0, 1" EndPoint="0, 0">
+											<GradientStop Offset="1" Color="#000a"/>
+											<GradientStop Offset="0.6" Color="#0005"/>
+											<GradientStop Offset="0" Color="#0000"/>
+										</LinearGradient>
+									</Rectangle>
+									<ImageFill Url="{image}" StretchMode="UniformToFill" ContentAlignment="BottomCenter"/>
+								</Rectangle>
+
+								<StackPanel Padding="20" ItemSpacing="20">
+									<Text Value="{webTitle}" FontSize="24" TextWrapping="Wrap"/>
+									<Text Value="{body}" TextWrapping="Wrap"/>
+								</StackPanel>
+							</StackPanel>
+						</With>
+					</ScrollView>
+				</Page>
+			</Navigator>
+		</DockPanel>
+	</Material.DrawerPanel>
+</App>

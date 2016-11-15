@@ -1,0 +1,31 @@
+<Container ux:Class="Material.RippleResponseRectangle" Subtree="rect" RippleColor="#00000017" RippleFromPointer="true">
+	<float4 ux:Property="CornerRadius" />
+	<float4 ux:Property="RippleColor" />
+	<bool ux:Property="RippleFromPointer" />
+	<Rectangle ux:Name="rect" ux:Binding="Children" CornerRadius="{ReadProperty CornerRadius}" Fill="0,0,0,0" HitTestMode="LocalVisual">
+		<WhilePressed ux:Name="wp">
+			<Instance>
+				<Rectangle CornerRadius="{ReadProperty CornerRadius}">
+					<Material.CircleFill ux:Name="fill" Color="{ReadProperty RippleColor}" CircleCenter="{SnapshotProperty wp.PressedPosition}" Radius="0"/>
+					
+					<WhileFalse Value="{Property RippleFromPointer}">
+						<Change ux:Name="change1" Target="fill.CircleCenter"/>
+						<DivideOperator Target="change1.Value" Left="{SnapshotProperty rect.ActualSize}" Right="2" />
+					</WhileFalse>
+
+					<AddingAnimation>
+						<PlayTo Target="timeline" Direction="Backward" Progress="1" />
+					</AddingAnimation>
+					<RemovingAnimation>
+						<Change fill.Radius="300" Duration="0.45" Easing="Material.StandardCurve" MixOp="Add" />
+						<Change Target="fill.Color" Value="#0000" Easing="BackIn" Duration="0.435" />
+					</RemovingAnimation>
+
+					<Timeline ux:Name="timeline">
+						<Change fill.Radius="3000" Duration="7" Easing="Material.StandardCurve" MixOp="Add" />
+					</Timeline>
+				</Rectangle>
+			</Instance>
+		</WhilePressed>
+	</Rectangle>
+</Container>

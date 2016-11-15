@@ -1,0 +1,26 @@
+<Container ux:Class="Material.AppBar" Subtree="toolstrip" Dock="Top">
+	
+	<!-- https://material.google.com/layout/structure.html#structure-app-bar -->
+
+	<Material.RippleResponseCircle ux:Class="Material.AppBarIcon" RippleColor="#fff2" RippleFromPointer="false" >
+		<Material.IconName ux:Property="Icon" />
+		<Material.MaterialIcon Icon="{Property Icon}" Color="{Resource Material.AppBarIconColor}" Alignment="VerticalCenter" Margin="16,0,16,0" />
+	</Material.RippleResponseCircle>
+
+	<DockPanel ux:Binding="Children" Color="{Resource Material.PrimaryColor}">
+		<StatusBarBackground Dock="Top">
+			<Android.StatusBarConfig Color="#0003" />
+		</StatusBarBackground>
+		<Panel ux:Name="toolbar" Height="56">
+			<WhileWindowLandscape>
+				<Change toolbar.Height="48" Duration="0.2" />
+			</WhileWindowLandscape>
+			<DockPanel ux:Name="toolstrip"  >
+				
+			</DockPanel>
+		</Panel>
+	</DockPanel>
+
+	<Material.BottomEdgeShadow ux:Binding="Children" />
+	
+</Container>

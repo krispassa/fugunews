@@ -1,0 +1,16 @@
+<Container ux:Class="Material.Drawer" Subtree="subtree" MaxWidth="280" Width="100%">
+
+	<Panel ux:Binding="Children" ux:Name="subtree" Color="{Resource Material.BackgroundColor}">
+
+	</Panel>
+
+	<Material.RightEdgeShadow ux:Binding="Children" ux:Name="shadow" Opacity="0">
+		<Material.WhileTablet>
+			<Change this.MaxWidth="320" />
+		</Material.WhileTablet>
+		<ActivatingAnimation>
+			<Change shadow.Opacity="1" Duration="1" Easing="ExponentialOut" />
+		</ActivatingAnimation>
+	</Material.RightEdgeShadow>
+
+</Container>
