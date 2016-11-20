@@ -1,8 +1,15 @@
 {
-  "RootNamespace":"",
+  "Title": "Fugunews",
+  "Description": "It is a mobile application based on Fuse tools and The Guardian open platform API.",
+  "Version": "0.0.1",
+  "Mobile": {
+    "Orientations": "PortraitUpsideDown"
+  },
+  "Icon": "Assets/app_icon.png",
+  "RootNamespace": "",
   "Packages": [
-  	"Fuse",
-  	"FuseJS"
+    "Fuse",
+    "FuseJS"
   ],
   "Includes": [
     "*"
